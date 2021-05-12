@@ -114,29 +114,23 @@ f2().catch(console.log);
 
 
 
-
-
+//add document
+router.post('/add',bodyParser,(req,res)=>{
+  client.index({
+    index:'dataset',
+    body:req.body
+  },function(res,err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(res);
+      }
+  })
+  dataset.push(req.body);
+})
  
 
-
-// router.post('/products',bodyParser,(req,res)=>{
-//     elasticClient.index({
-//         index:'products',
-//         body:req.body
-//     })
-//     .then(resp=>{
-//         return res.status(200).json({
-//             msg:'product indexed'
-//         });
-//     })
-//     .catch(err=>{
-//         return res.status(500).json({
-//             msg:'Error',
-//             err
-//         });
-//     })
-
-// });
 
 
 module.exports = router;
